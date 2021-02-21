@@ -9,7 +9,7 @@
     }
   },
   "host": "",
-  "basePath": "https://somehost/api",
+  "basePath": "/api",
   "tags": [
     {
       "name": "Users",
@@ -24,16 +24,27 @@
       "description": "About posts"
     }
   ],
-  "schemes": ["https", "http"],
+  "schemes": [
+    "https",
+    "http"
+  ],
   "paths": {
-    "/users/create-user/": {
+    "/users": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Create a user",
         "description": "",
         "operationId": "addUser",
-        "consumes": ["application/json", "application/xml"],
-        "produces": ["application/xml", "application/json"],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -50,15 +61,76 @@
             "description": "Invalid input"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Edit user",
+        "description": "Get users list",
+        "operationId": "editUser",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "All data for storage - active users",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get users list ",
+        "description": "",
+        "operationId": "",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+         "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "get all users",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
       }
     },
     "/users/login": {
-      "get": {
-        "tags": ["Users"],
+      "post": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Logs user into the system",
         "description": "",
         "operationId": "loginUser",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "username",
@@ -89,12 +161,17 @@
       }
     },
     "/users/logout": {
-      "get": {
-        "tags": ["Users"],
+      "post": {
+        "tags": [
+          "Users"
+        ],
         "summary": "Logs out current logged in user session",
         "description": "log out user",
         "operationId": "logoutUser",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [],
         "responses": {
           "default": {
@@ -103,13 +180,18 @@
         }
       }
     },
-    "/users/get/{id}": {
+    "/users/{id}": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Finds user by id",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -139,13 +221,17 @@
         }
       }
     },
-    "/channels/": {
+    "/channels": {
       "post": {
-        "tags": ["Channels"],
+        "tags": [
+          "Channels"
+        ],
         "summary": "Create Channel",
         "description": "Returns a map of status codes to quantities",
         "operationId": "getInventory",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [],
         "responses": {
           "200": {
@@ -161,19 +247,27 @@
         }
       }
     },
-    "/channels/invite-users": {
+    "/channels/invite": {
       "post": {
-        "tags": ["Channels"],
+        "tags": [
+          "Channels"
+        ],
         "summary": "Invite users to a channel",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
             "name": "body",
             "description": "list users to invite",
-            "required": true
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/channels"
+            }
           }
         ],
         "responses": {
@@ -188,11 +282,16 @@
     },
     "/channels/{id}": {
       "get": {
-        "tags": ["Channels"],
+        "tags": [
+          "Channels"
+        ],
         "summary": "Find channel by id",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -218,11 +317,16 @@
         }
       },
       "delete": {
-        "tags": ["Channels"],
+        "tags": [
+          "Channels"
+        ],
         "summary": "",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -244,18 +348,23 @@
         }
       }
     },
-    "/posts/create-post/text": {
+    "/posts": {
       "post": {
-        "tags": ["Posts"],
-        "summary": "Create text post",
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Create a post",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Created text post",
+            "description": "Created a post",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Posts"
@@ -267,40 +376,18 @@
             "description": "successful operation"
           }
         }
-      }
-    },
-    "/posts/create-post/event": {
-      "post": {
-        "tags": ["Posts"],
-        "summary": "Creates event post",
-        "description": "",
-        "operationId": "",
-        "produces": ["application/xml", "application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Create event posts",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Posts"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/posts/edit-post/{channel_id}/{post_id}": {
+      },
       "put": {
-        "tags": ["Posts"],
+        "tags": [
+          "Posts"
+        ],
         "summary": "Edit post",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "channel_id",
@@ -326,7 +413,10 @@
             "name": "body",
             "in": "body",
             "description": "data to update",
-            "required": true
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Posts"
+            }
           }
         ],
         "responses": {
@@ -334,15 +424,18 @@
             "description": "successful operation"
           }
         }
-      }
-    },
-    "/posts/list-posts/{channel_id}": {
+      },
       "get": {
-        "tags": ["Posts"],
+        "tags": [
+          "Posts"
+        ],
         "summary": "List channel's posts",
         "description": "",
         "operationId": "",
-        "produces": ["application/xml", "application/json"],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "channel_id",
@@ -353,31 +446,6 @@
             "maximum": 10,
             "minimum": 1,
             "format": "int64"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/posts/create-post/poll": {
-      "post": {
-        "tags": ["Posts"],
-        "summary": "",
-        "description": "",
-        "operationId": "",
-        "produces": ["application/xml", "application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "List of user object",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Posts"
-            }
           }
         ],
         "responses": {
@@ -397,11 +465,19 @@
         },
         "posts_id": {
           "type": "integer",
-          "example": [12, 34, 67]
+          "example": [
+            12,
+            34,
+            67
+          ]
         },
         "participants_id": {
           "type": "string",
-          "example": [12, 34, "pepe@mail.com"]
+          "example": [
+            12,
+            34,
+            "pepe@mail.com"
+          ]
         },
         "channel_id": {
           "type": "integer"
@@ -436,7 +512,10 @@
         "type": {
           "type": "string",
           "example": "active",
-          "enum": ["anonymous", "active"]
+          "enum": [
+            "anonymous",
+            "active"
+          ]
         }
       }
     },
@@ -456,8 +535,12 @@
         "dataText": {
           "$ref": "#/definitions/Text"
         },
-        "dataPoll": { "$ref": "#/definitions/Poll" },
-        "dataEvent": { "$ref": "#/definitions/Event" }
+        "dataPoll": {
+          "$ref": "#/definitions/Poll"
+        },
+        "dataEvent": {
+          "$ref": "#/definitions/Event"
+        }
       }
     },
     "Text": {
@@ -482,9 +565,15 @@
         "content": {
           "type": "string"
         },
-        "responses": { "$ref": "#/definitions/Responses" },
-        "open_options": { "type": "boolean" },
-        "options": { "type": "integer" }
+        "responses": {
+          "$ref": "#/definitions/Responses"
+        },
+        "open_options": {
+          "type": "boolean"
+        },
+        "options": {
+          "type": "integer"
+        }
       }
     },
     "Event": {
@@ -496,12 +585,16 @@
         "content": {
           "type": "string"
         },
-        "responses": { "$ref": "#/definitions/Responses" },
+        "responses": {
+          "$ref": "#/definitions/Responses"
+        },
         "date_start": {
-          "type": "date-time"
+          "type": "string",
+          "format": "date-time"
         },
         "date_end": {
-          "type": "date-time"
+          "type": "string",
+          "format": "date-time"
         },
         "status_char": {
           "type": "string"
@@ -514,9 +607,15 @@
     "Responses": {
       "type": "object",
       "properties": {
-        "response_id": { "type": "integer" },
-        "responder_id": { "type": "integer" },
-        "value": { "type": "string" }
+        "response_id": {
+          "type": "integer"
+        },
+        "responder_id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": "string"
+        }
       }
     }
   }
